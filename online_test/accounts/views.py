@@ -38,19 +38,31 @@ def signup(request):
     if request.method=='POST':
         username        = request.POST.get('username')
         password        = request.POST.get('password')
-        confirm_password= request.POST.get('password')
+        confirm_password= request.POST.get('confirm_password')
         email           = request.POST.get('email')
         first_name      = request.POST.get('first_name')
         last_name       = request.POST.get('last_name')
         role            = request.POST.get('role')
         print(username,password,confirm_password,first_name,last_name,email)
+        
         #user = User.objects.create_user(username = username, password = password,first_name = first_name, last_name = last_name,email=email)
-        if role == 'student':
-            user = User.objects.create_user(is_student= True,username = username, password = password,first_name = first_name, last_name = last_name,email=email)
-            #put data into student table from here
-        elif role == 'company':
-            user = User.objects.create_user(is_company = True,username = username, password = password,first_name = first_name, last_name = last_name,email=email)
-            #put data into company table from here
+        if password == confirm_password:
+            if role == 'student':
+                user = User.objects.create_user(is_student= True,username = username, password = password,first_name = first_name, last_name = last_name,email=email)
+                #put data into student table from here
+            elif role == 'company':
+                user = User.objects.create_user(is_company = True,username = username, password = password,first_name = first_name, last_name = last_name,email=email)
+                #put data into company table from 
+            context = {
+            'message':'user created sucessfully',
+            }
+            return render(request,'accounts/signup.html',context)
+        else:
+            context = {
+            'message':'password does not matched',
+            }
+            return render(request,'accounts/signup.html',context)
+
     else:
         context = {
             'message':'hogya show',
