@@ -1,25 +1,151 @@
-<!DOCTYPE html>
+
+{% load static %}
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login page</title>
-</head>
-<body>
-    <h4>{{message}}</h4>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type = 'text' name = 'username' placeholder = 'username' required/><br>
-        <input type = 'password' name = 'password' placeholder="password" required/><br>
-        <input type = 'password' name = 'confirm_password' placeholder="confirm_password" required/><br>
-        <input type = 'email' name = 'email' placeholder="email" required/><br>
-        <input type = 'text' name = 'first_name'  placeholder="first name" required/><br>
-        <input type = 'text' name = 'last_name'  placeholder="last name" required/><br>
-        <input type="radio" id="student" name="role" value="student" required/>
-            <label for="student">Student</label><br>
-        <input type="radio" id="company" name="role" value="company" required>
-            <label for="company">Company</label><br>
-        <input type = 'submit' />
-    </form>
-</body>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css">
+    <title>Signup</title>
+
+    <!--style-->
+    <style>
+     
+
+
+
+
+        </style>
+    
+
+
+
+
+
+
+
+  </head>
+  <body>
+  
+
+    <!-- navigation bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="{% url 'home' %}">Employable?</a>
+         
+         
+          <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'login' %}' type="submit">Login</button>
+          
+        </div>
+      </nav>
+<!--
+      {% if user.is_authenticated %}
+      <p>Welcome {{ user.username }} !!!</p>       
+  {% endif %}
+
+-->
+
+
+
+
+<div class="alert alert-success alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+   {{message}}
+</div>
+    <div class="container" style='padding-top:0%;padding-left: 8%;'>
+        <h2>Signup Now!</h2>
+        <form method='POST' action="{% url 'signup' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="inputAddress">username</label>
+                <input required type="text" class="form-control"  placeholder="username" name='username'>
+              </div>
+            <div class="form-row">
+            
+              <div class="form-group col-md-6">
+                <label for="first_name">First name</label>
+                <input required type="text" id = 'first_name' class="form-control" placeholder="First Name" name = 'first_name'>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="last_name">Last Name</label>
+                <input required type="text" class="form-control" name = 'last_name' id="last_name" placeholder="last name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input required type="email" class="form-control" id='email' name='email' placeholder="email">
+            </div>
+            
+            <div class="form-row">
+            
+                <div class="form-group col-md-6">
+                  <label for="password">password</label>
+                  <input required type="password" id = 'password' class="form-control" placeholder="password" name = 'password'>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="confirm_password">confirm_password</label>
+                  <input required type="password" class="form-control" id="confirm_password" placeholder="confirm_password" name='confirm_password'>
+                </div>
+              </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input required class="form-check-input"value = 'student' type="radio" id="gridCheck" name= 'role'>
+                <label class="form-check-label" for="gridCheck">
+                  Student<br>
+                <input required class="form-check-input" value='company' name='role' type="radio" id="gridCheck1">
+                <label class="form-check-label" for="gridCheck1">
+                  company
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+      </div>
+      
+
+  
+
+<!--footer-->
+<!-- Footer -->
+<nav class=" bg-dark fixed-bottom">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3 container" style='color:darkgray'>© 2020 Copyright:
+    <a href="{% url 'home' %}"> employable.com</a>
+  </div>
+  <!-- Copyright -->
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
 </html>
+
+
+

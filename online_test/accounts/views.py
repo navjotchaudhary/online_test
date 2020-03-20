@@ -17,7 +17,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return HttpResponse(f'logged in as {user.username}')
+            return redirect('home')
         else :
             context = {
                 'message':'not able to login'
@@ -25,13 +25,13 @@ def login(request):
             return render(request,'accounts/login.html',{'message':'not able to login'})
     
     else:
-        return render(request,'accounts/login.html',{})
+        return render(request,'accounts/login.html',{'message':'try to login here'})
 
 
 
 def logout(request):
     auth.logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 def signup(request):
@@ -65,7 +65,7 @@ def signup(request):
 
     else:
         context = {
-            'message':'hogya show',
+            'message':'Signup here!',
         }
         return render(request,'accounts/signup.html',context)
 

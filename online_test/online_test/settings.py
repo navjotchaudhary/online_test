@@ -117,7 +117,20 @@ USE_TZ = True
  #user model for authentication
 AUTH_USER_MODEL = 'accounts.User'
 
+
+
 # Static files (CSS, JavaScript, Images)
+
+#static file
+STATIC_URL = '/static/'
+# Add these new lines
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+

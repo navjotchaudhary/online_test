@@ -1,0 +1,14 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type = 'text' name = 'username' placeholder = 'username' required/><br>
+    <input type = 'password' name = 'password' placeholder="password" required/><br>
+    <input type = 'password' name = 'confirm_password' placeholder="confirm_password" required/><br>
+    <input type = 'email' name = 'email' placeholder="email" required/><br>
+    <input type = 'text' name = 'first_name'  placeholder="first name" required/><br>
+    <input type = 'text' name = 'last_name'  placeholder="last name" required/><br>
+    <input type="radio" id="student" name="role" value="student" required/>
+        <label for="student">Student</label><br>
+    <input type="radio" id="company" name="role" value="company" required>
+        <label for="company">Company</label><br>
+    <input type = 'submit' />
+</form>
