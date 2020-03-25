@@ -2,14 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import auth
 from django.shortcuts import redirect
-
+from django.views import View
 from accounts.models import User
 
 
 
-# Create your views here.
-def login(request):
-    if request.method=='POST':
+class loginView(View):
+    def post(self,request):
         username        = request.POST.get('username')
         password        = request.POST.get('password')
 
@@ -24,18 +23,19 @@ def login(request):
             }
             return render(request,'accounts/login.html',{'message':'not able to login'})
     
-    else:
+    
+    def get(self,request):
         return render(request,'accounts/login.html',{'message':'try to login here'})
 
 
 
-def logout(request):
-    auth.logout(request)
-    return redirect('home')
+class logoutView(View):
+    def get(self,request):
+        auth.logout(request)
+        return redirect('home')
 
-
-def signup(request):
-    if request.method=='POST':
+class signupView(View):
+    def post(self,request):
         username        = request.POST.get('username')
         password        = request.POST.get('password')
         confirm_password= request.POST.get('confirm_password')
@@ -62,11 +62,10 @@ def signup(request):
             'message':'password does not matched',
             }
             return render(request,'accounts/signup.html',context)
-
-    else:
+    def get(self,request):
         context = {
             'message':'Signup here!',
         }
         return render(request,'accounts/signup.html',context)
 
-
+        
