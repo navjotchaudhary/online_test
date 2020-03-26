@@ -16,6 +16,8 @@ class loginView(View):
 
         if user is not None:
             auth.login(request, user)
+            if (user.is_student and user.has_details ==False):
+                return redirect('fillStudentDetail')
             return redirect('home')
         else :
             context = {
@@ -56,7 +58,10 @@ class signupView(View):
             context = {
             'message':'user created sucessfully',
             }
-            return render(request,'accounts/signup.html',context)
+            if role == 'student':
+                return redirect('fillStudentDetail')
+            else:
+                return render(request,'accounts/signup.html',context)
         else:
             context = {
             'message':'password does not matched',

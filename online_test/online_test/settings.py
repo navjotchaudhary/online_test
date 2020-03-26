@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'exam',
     'student',
-    'company'
+    'company',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,7 @@ STATICFILES_DIRS = (
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 
