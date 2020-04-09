@@ -1,5 +1,5 @@
+{% load crispy_forms_tags humanize %}
 
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,6 @@
     <title>temp</title>
 </head>
 <body>
-    
     <!-- navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,65 +34,63 @@
           {% endif %}
         </div>
       </nav>
-    <div class='container' style= 'margin-top:60px'>
-        {% if request.user.is_authenticated %}
-        {% if request.user.is_company %}
-
-       
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">My Quizzes</li>
-            </ol>
-          </nav>
-          <h2 class="mb-3">My Quizzes</h2>
-          <a href="{% url 'createQuiz' %}" class="btn btn-primary mb-3" role="button">Add quiz</a>
-          <div class="card">
-            <table class="table mb-0">
-              <thead>
-                <tr>
-                  <th>Quiz</th>
-                  <th>Subject</th>
-                  <th>Questions</th>
-                  <th>Taken</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for quiz in quizzes %}
-                  <tr>
-                    <td class="align-middle"><a href="{% url 'updateQuiz' quiz.pk %}">{{ quiz.name }}</a></td>
-                    <td class="align-middle">{{ quiz.subject.get_html_badge }}</td>
-                    <td class="align-middle">{{ quiz.questions_count }}</td>
-                    <td class="align-middle">{{ quiz.taken_count }}</td>
-                    <td class="text-right">
-                      <a href="{% url 'results' quiz.pk %}" class="btn btn-primary">View results</a>
-                    </td>
-                  </tr>
-                {% empty %}
-                  <tr>
-                    <td class="bg-light text-center font-italic" colspan="5">You haven't created any quiz yet.</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-            {% else %}
-            <h4>you need to be a company to see this page</h4>
-
-            {% endif %}
-            {% else %}
-            <h4>first login in</h4>
-            {% endif %}
-          </div>
-
-        
 
 
+    <div class = 'container' style= 'margin-top:60px'>
+        {% if user.is_authenticated %}
+{% if request.user.is_company %}
 
-</div>
-<div style = "margin-bottom:50px">
 
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'quizList' %}">My Quizzes</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'updateQuiz' quiz.pk %}">{{ quiz.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Results</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">{{ quiz.name }} Results</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <strong>Taken Quizzes</strong>
+      <span class="badge badge-pill badge-primary float-right">Average Score: {{ quiz_score.average_score|default_if_none:0.0 }}</span>
+    </div>
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Date</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for taken_quiz in taken_quizzes %}
+          <tr>
+            <td>{{ taken_quiz.student.user.username }}</td>
+            <td>{{ taken_quiz.date|naturaltime }}</td>
+            <td>{{ taken_quiz.score }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="card-footer text-muted">
+      Total respondents: <strong>{{ total_taken_quizzes }}</strong>
+    </div>
+  </div>
+
+
+{%else%}
+<p>you need to login as a company first</p>
+{% endif %}
+{% else %}
+<p>you need to login first</p>
+{% endif %}
 </div>
 
+
+
+
+ 
 <nav class=" bg-dark fixed-bottom">
 
     <!-- Copyright -->
@@ -109,3 +106,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </html>
+

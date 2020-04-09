@@ -1,6 +1,6 @@
 from django.shortcuts import render,reverse,get_object_or_404,redirect
 from django.views import View
-from django.views.generic import UpdateView,ListView
+from django.views.generic import UpdateView,ListView, DetailView
 from exam.forms import QuizCreationForm,QuestionForm,BaseAnswerInlineFormSet
 from django.http import HttpResponse
 from exam.models import Quiz,Question, Answer
@@ -132,3 +132,26 @@ def question_change(request, quiz_pk, question_pk):
         'form': form,
         'formset': formset
     })
+
+class QuizResultsView(DetailView):
+    model = Quiz
+    context_object_name = 'quiz'
+    template_name = 'company/quiz_results.html'
+
+    def get_context_data(self, **kwargs):
+        quiz = self.get_object()
+        taken_quizzes = quiz.taken_quizzes.select_related('student__user').order_by('-date')
+        total_taken_quizzes = taken_quizzes.count()
+        quiz_score = quiz.taken_quizzes.aggregate(average_score=Avg('score'))
+        extra_context = {
+            'taken_quizzes': taken_quizzes,
+            'total_taken_quizzes': total_taken_quizzes,
+            'quiz_score': quiz_score
+        }
+        kwargs.update(extra_context)
+        return super().get_context_data(**kwargs)
+
+    def get_queryset(self):
+        return self.request.user.quizzes.all()
+
+    

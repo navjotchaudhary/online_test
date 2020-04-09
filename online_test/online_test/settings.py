@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'student',
     'company',
     'crispy_forms',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [

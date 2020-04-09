@@ -5,6 +5,7 @@ urlpatterns =[
     path('quiz/<int:pk>',views.QuizUpdateView.as_view(),name= 'updateQuiz'),
     path('quiz/',views.QuizListView.as_view(),name='quizList'),
     path('quiz/<int:pk>/question/add',views.question_add,name='addQuestion'),
-    path('quiz/<int:quiz_pk>/question/<int:question_pk>',views.question_change,name='changeQuestion')
+    path('quiz/<int:quiz_pk>/question/<int:question_pk>',views.question_change,name='changeQuestion'),
+    path('quiz/<int:pk>/results/', views.QuizResultsView.as_view(), name='results'),
 ]
 
