@@ -13,5 +13,5 @@ class homeView(View):
                     return render(request,'home/home.html',{})
             else:
                 return redirect('quizList')
-        return render(request,'home/home.html',{})
+        return render(request,'base.html',{})
         
