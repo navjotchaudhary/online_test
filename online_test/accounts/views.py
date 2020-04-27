@@ -45,15 +45,18 @@ class signupView(View):
         first_name      = request.POST.get('first_name')
         last_name       = request.POST.get('last_name')
         role            = request.POST.get('role')
+        about            = request.POST.get('about')
+        website            = request.POST.get('website')
+        image = request.POST['imageselect']
         print(username,password,confirm_password,first_name,last_name,email)
         
         #user = User.objects.create_user(username = username, password = password,first_name = first_name, last_name = last_name,email=email)
         if password == confirm_password:
             if role == 'student':
-                user = User.objects.create_user(is_student= True,username = username, password = password,first_name = first_name, last_name = last_name,email=email)
+                user = User.objects.create_user(is_student= True,username = username,about = about,image = "profile_image/"+image, password = password,first_name = first_name, last_name = last_name,email=email)
                 #put data into student table from here
             elif role == 'company':
-                user = User.objects.create_user(is_company = True,username = username, password = password,first_name = first_name, last_name = last_name,email=email)
+                user = User.objects.create_user(is_company = True,username = username,website = website, about = about, image ="profile_image/"+image, password = password,first_name = first_name, last_name = last_name,email=email)
                 #put data into company table from 
             context = {
             'message':'user created sucessfully',

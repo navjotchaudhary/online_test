@@ -4,7 +4,7 @@ from django.forms.utils import ValidationError
 class QuizCreationForm(ModelForm):
     class Meta:
         model = Quiz
-        fields = ['name','subject']
+        fields = ['name','subject','location','skills_Required','education','work_exporience','ctc','posts']
 
 
 class QuestionForm(ModelForm):

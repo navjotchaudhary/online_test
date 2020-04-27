@@ -37,7 +37,7 @@
         {% if user.is_authenticated %}
     {% if request.user.is_company %}
     
-        <form method = 'POST' action = '' >
+        <form method = 'POST' action = ''  style='padding-bottom:6%;padding-left: 8%;'>
             {% csrf_token %}
             {{form|crispy}}
             <input type='submit' class="btn btn-success"/>

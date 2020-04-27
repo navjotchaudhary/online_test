@@ -59,7 +59,7 @@
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
    {{message}}
 </div>
-    <div class="container" style='padding-top:0%;padding-left: 8%;'>
+    <div class="container" style='padding-bottom:6%;padding-left: 8%;'>
         <h2>Signup Now!</h2>
         <form method='POST' action="{% url 'signup' %}">
             {% csrf_token %}
@@ -77,10 +77,30 @@
                 <label for="last_name">Last Name</label>
                 <input required type="text" class="form-control" name = 'last_name' id="last_name" placeholder="last name">
               </div>
+
+              
+
+
             </div>
+            <div class="form-group">
+                <label for="about">About</label>
+                <input required type="text" class="form-control" name = 'about' id="about" placeholder="some description about you">
+              </div>
             <div class="form-group">
               <label for="email">Email</label>
               <input required type="email" class="form-control" id='email' name='email' placeholder="email">
+            </div>
+
+            <div class="form-group">
+              <label for="website (for Companies Only...)">website (for Companies Only...)</label>
+              <input type="email" class="form-control" id='website (for Companies Only...)' name='website' placeholder="website (for Companies Only...)">
+            </div>
+
+
+
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input required type="file" class="form-control-file" id='image' name='imageselect' placeholder="email">
             </div>
             
             <div class="form-row">
