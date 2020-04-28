@@ -1,48 +1,35 @@
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>temp</title>
-</head>
-<body>
-    <!-- navigation bar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href={% url 'home' %}>Employable?</a>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            
-          </ul>
-          {% if user.is_authenticated %}
-          <span class="navbar-text active">
-            {{user}}
-          
-          </span>
-          
-          <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'logout' %}' type="submit">Log Out!</button>
-
-          {% else %}
-            <button class="btn btn-outline-primary my-2 my-sm-0" style = 'margin-right: 4px;' onclick=location.href='{% url 'login' %}'  type="submit">login</button>
-            <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'signup' %}' type="submit">Signup with us!</button>
-          {% endif %}
-        </div>
-      </nav>
+{% block body %}
+<!--================Home Banner Area =================-->
+<section class="home_banner_area">
+   <div class="banner_inner">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-12">
+           <div class="banner_content text-center">
+             
+             <h2 class="text-uppercase mt-4 mb-5">
+               Enter some aditional details............
+             </h2>
+             
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
     <div class='container' style= 'margin-top:60px'>
         {% if user.is_authenticated %}
     {% if request.user.is_student %}
     {% if request.user.has_details%}
-        <p>you are already have your details,<a href={% url 'home' %}>clock here to view site</a></p>
+        <p>you are already have your details,<a href={% url 'home' %}>click here to view site</a></p>
         {% else %}
         <form method = 'POST' action = '' >
             {% csrf_token %}
             {{form|crispy}}
-            <input type='submit' class="btn btn-success"/>
+            <input type='submit' class="btn btn-primary " value = "Submit"/>
     </form>
         
     
@@ -57,19 +44,4 @@
     <p>you need to login first</p>
     {% endif %}
 </div>
-
-<nav class=" bg-dark fixed-bottom">
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3 container" style='color:darkgray'>© 2020 Copyright:
-      <a href="{% url 'home' %}"> employable.com</a>
-    </div>
-    <!-- Copyright -->
-  
-  
-  
-  </nav>
-</body>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-</html>
+{% endblock %}

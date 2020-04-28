@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="home_banner_area">
+    <div class="banner_inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner_content text-center">
+              <p>
+                  LOOKING FOR A JOB?
+              </p>
+              <h2 class="text-uppercase mt-4 mb-5">
+                Signup Now.....
+              </h2>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!--================ End Home Banner Area =================-->
+  <div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+     {{message}}
+  </div>
+      <div class="container" style='padding-bottom:6%;padding-left: 8%;'>
+          <h2>Signup Now!</h2>
+          <form method='POST' action="{% url 'signup' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="inputAddress">username</label>
+                  <input required type="text" class="form-control"  placeholder="username" name='username'>
+                </div>
+              <div class="form-row">
+              
+                <div class="form-group col-md-6">
+                  <label for="first_name">First name</label>
+                  <input required type="text" id = 'first_name' class="form-control" placeholder="First Name" name = 'first_name'>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="last_name">Last Name</label>
+                  <input required type="text" class="form-control" name = 'last_name' id="last_name" placeholder="last name">
+                </div>
+  
+                
+  
+  
+              </div>
+              <div class="form-group">
+                  <label for="about">About</label>
+                  <input required type="text" class="form-control" name = 'about' id="about" placeholder="some description about you">
+                </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input required type="email" class="form-control" id='email' name='email' placeholder="email">
+              </div>
+  
+              <div class="form-group">
+                <label for="website (for Companies Only...)">website (for Companies Only...)</label>
+                <input type="email" class="form-control" id='website (for Companies Only...)' name='website' placeholder="website (for Companies Only...)">
+              </div>
+  
+  
+  
+              <div class="form-group">
+                <label for="image">Image</label>
+                <input required type="file" class="form-control-file" id='image' name='imageselect' placeholder="email">
+              </div>
+              
+              <div class="form-row">
+              
+                  <div class="form-group col-md-6">
+                    <label for="password">password</label>
+                    <input required type="password" id = 'password' class="form-control" placeholder="password" name = 'password'>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="confirm_password">confirm_password</label>
+                    <input required type="password" class="form-control" id="confirm_password" placeholder="confirm_password" name='confirm_password'>
+                  </div>
+                </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input required class="form-check-input"value = 'student' type="radio" id="gridCheck" name= 'role'>
+                  <label class="form-check-label" for="gridCheck">
+                    Student<br>
+                  <input required class="form-check-input" value='company' name='role' type="radio" id="gridCheck1">
+                  <label class="form-check-label" for="gridCheck1">
+                    company
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+        </div>
+        
+  
+  <!--================ Start Feature Area =================-->
+ 
+
+{% endblock %}

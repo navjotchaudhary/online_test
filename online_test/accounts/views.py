@@ -23,11 +23,11 @@ class loginView(View):
             context = {
                 'message':'not able to login'
             }
-            return render(request,'accounts/login.html',{'message':'not able to login'})
+            return render(request,'accounts/login1.html',{'message':'not able to login'})
     
     
     def get(self,request):
-        return render(request,'accounts/login.html',{'message':'try to login here'})
+        return render(request,'accounts/login1.html',{'message':'try to login here'})
 
 
 
@@ -53,10 +53,10 @@ class signupView(View):
         #user = User.objects.create_user(username = username, password = password,first_name = first_name, last_name = last_name,email=email)
         if password == confirm_password:
             if role == 'student':
-                user = User.objects.create_user(is_student= True,username = username,about = about,image = "profile_image/"+image, password = password,first_name = first_name, last_name = last_name,email=email)
+                user = User.objects.create_user(is_student= True,username = username,about = about,image = "main_image/"+image, password = password,first_name = first_name, last_name = last_name,email=email)
                 #put data into student table from here
             elif role == 'company':
-                user = User.objects.create_user(is_company = True,username = username,website = website, about = about, image ="profile_image/"+image, password = password,first_name = first_name, last_name = last_name,email=email)
+                user = User.objects.create_user(is_company = True,username = username,website = website, about = about, image = "main_image/"+image, password = password,first_name = first_name, last_name = last_name,email=email)
                 #put data into company table from 
             context = {
             'message':'user created sucessfully',
@@ -64,16 +64,16 @@ class signupView(View):
             if role == 'student':
                 return redirect('fillStudentDetail')
             else:
-                return render(request,'accounts/signup.html',context)
+                return render(request,'accounts/signup1.html',context)
         else:
             context = {
             'message':'password does not matched',
             }
-            return render(request,'accounts/signup.html',context)
+            return render(request,'accounts/signup1.html',context)
     def get(self,request):
         context = {
             'message':'Signup here!',
         }
-        return render(request,'accounts/signup.html',context)
+        return render(request,'accounts/signup1.html',context)
 
         
