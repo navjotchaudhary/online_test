@@ -12,7 +12,7 @@
               <h2 class="text-uppercase mt-4 mb-5">
                 {{quiz.name}}
               </h2>
-              <p>your suggestions are always welcomed.....</p>
+              <p>Details of {{quiz.name}} test....</p>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
                     </li>
                 </ul>
                 {% if user.is_authenticated and user.is_student %}
-                <a href="{% url 'take_quiz' quiz.id%}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
+                <a href="{% url 'take_quiz' quiz.id%}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Give this test now!</a>
                 {% else %}
                 <a href="{% url 'login' %}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Login to crack this!</a>
                 {% endif %}
