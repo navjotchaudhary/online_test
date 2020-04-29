@@ -1,266 +1,284 @@
+{% extends 'base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css">
-    <title>Hello, world!</title>
 
-    <!--style-->
-    <style>
-     
-
-
-
-
-        </style>
-    
-
-
-
-
-
-
-
-  </head>
-  <body>
-  
-
-    <!-- navigation bar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#">Employable?</a>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#newOpenings">New Openings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Companies</a>
-            </li>
-          </ul>
-          {% if user.is_authenticated %}
-          <span class="navbar-text active">
-            {{user}}
-          
-          </span>
-          
-          <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'logout' %}' type="submit">Log Out!</button>
-
-          {% else %}
-            <button class="btn btn-outline-primary my-2 my-sm-0" style = 'margin-right: 4px;' onclick=location.href='{% url 'login' %}'  type="submit">login</button>
-            <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'signup' %}' type="submit">Signup with us!</button>
-          {% endif %}
-        </div>
-      </nav>
-<!--
-      {% if user.is_authenticated %}
-      <p>Welcome {{ user.username }} !!!</p>       
-  {% endif %}
-
--->
-
-
-
-
-
-
-
-      <div class='welcomeText'>
-        <H1 class="welcomeNote">Need a job?</H1>
-       <H1 class ='hello welcomeNote'>We will take you there...</H1>
-      </div>
-    
-      
-
-    
-
-    
-
-
-      {% if user.is_authenticated %}
-            
-      {% else %}
-
-
-
-    <div class="container">
-        <h2>Login Now!</h2>
-        <form class="form-horizontal" action="{% url 'login'%}" method='POST'>
-          {% csrf_token %}
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Username:</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="pwd">Password:</label>
-            <div class="col-sm-10">          
-              <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
-            </div>
-          </div>
-          <div class="form-group">        
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label><input type="checkbox" name="remember"> Remember me</label>
+{% block homeactive %} active {% endblock %}
+{% block body %}
+<section class="home_banner_area">
+    <div class="banner_inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner_content text-center">
+              <p class="text-uppercase">
+                Finding job is now easy.....
+              </p>
+              <h2 class="text-uppercase mt-4 mb-5">
+                Go ahead and register now....
+              </h2>
+              <div>
+                <a href="{% url 'login'%}" class="primary-btn2 mb-3 mb-sm-0">Login</a>
+                <a href="{% url 'signup'%}" class="primary-btn ml-sm-3 ml-0">Signup</a>
               </div>
             </div>
           </div>
-          <div class="form-group">        
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-outline-dark" id = 'newOpenings'>Submit</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End Home Banner Area =================-->
+
+  <!--================ Start Feature Area =================-->
+  <section class="feature_area section_gap_top">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="main_title">
+            <h2 class="mb-3">Awesome Feature</h2>
+            <p>
+              Replenish man have thing gathering lights yielding shall you
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="single_feature">
+            <div class="icon"><span class="flaticon-student"></span></div>
+            <div class="desc">
+              <h4 class="mt-3 mb-2">Scholarship Facility</h4>
+              <p>
+                One make creepeth, man bearing theira firmament won't great
+                heaven
+              </p>
             </div>
           </div>
-        </form>
-      </div>
-      {% endif %}
+        </div>
 
-    
-    <!--job listings-->
-    <div  ></div>
-<div class = 'jobs' >
-    <h1 style="text-align:center;background:black;color:rgb(204, 202, 202);" class='bg-dark' >New Openings</h2>
-    <div class="card">
+        <div class="col-lg-4 col-md-6">
+          <div class="single_feature">
+            <div class="icon"><span class="flaticon-book"></span></div>
+            <div class="desc">
+              <h4 class="mt-3 mb-2">Sell Online Course</h4>
+              <p>
+                One make creepeth, man bearing theira firmament won't great
+                heaven
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="single_feature">
+            <div class="icon"><span class="flaticon-earth"></span></div>
+            <div class="desc">
+              <h4 class="mt-3 mb-2">Global Certification</h4>
+              <p>
+                One make creepeth, man bearing theira firmament won't great
+                heaven
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End Feature Area =================-->
+
+  <!--================ Start Popular TESTS SHOW Area =================-->
+  <div class="popular_courses">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="main_title">
+            <h2 class="mb-3">Posts that are currently vacant......</h2>
+            <p>
+              Apply asap......
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- single course -->
         
-        <h1>Software Analist</h1>
-        <p class="price">ctc:$19.99</p>
-        <p>. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
-        <p>hi teere</p>
+        <div class="col-lg-12">
+          <div class="owl-carousel active_course">
+            {% for Quiz in Quizes %}
+            <div class="single_course">
+              <div class="course_head">
+                <img class="img-fluid" src={{Quiz.owner.image.url}} alt={{Quiz.owner.image.url}} />
+              </div>
+              <div class="course_content">
+                <span class="price">{{Quiz.ctc}}lpa</span>
+                <span class="tag mb-4 d-inline-block">{{Quiz.subject}}</span>
+                <h4 class="mb-3">
+                  <a href="{% url 'detail' Quiz.pk %}">{{Quiz.name}}</a>
+                </h4>
+                <p>
+                  {{Quiz.owner.about}}
+                </p>
+                <div
+                  class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                >
+                  <div class="authr_meta">
+                    <img src="{% static 'img/courses/author1.png' %}" alt="" />
+                    <span class="d-inline-block ml-2">{{Quiz.owner}}</span>
+                  </div>
+                  <div class="mt-lg-0 mt-3">
+                    <span class="meta_info mr-4">
+                      <a href="#"> <i class="ti-user mr-2"></i>{{Quiz.posts}}</a>
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <p><button>Know more and Apply</button></p>
-        <span style='color:red;text-align:right;margin-top:-10px;'>this job is posted by bebo on 12Aug20</span>
-      </div>
-
-      <div class="card">
-  
-        <h1>Software Analist</h1>
-        <p class="price">ctc:$19.99</p>
-        <p>. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
-        <p>hi teere</p>
-
-        <p><button>Know more and Apply</button></p>
-        <span style='color:red;text-align:right;margin-top:-10px;'>this job is posted by bebo on 12Aug20</span>
-      </div>
-
-
-      <div class="card">
-  
-        <h1>Software Analist</h1>
-        <p class="price">ctc:$19.99</p>
-        <p>. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
-        <p>hi teere</p>
-
-        <p><button>Know more and Apply</button></p>
-        <span style='color:red;text-align:right;margin-top:-10px;'>this job is posted by bebo on 12Aug20</span>
-      </div>
-
-
-    </div>
-
-
-    <!-------------------------------------------------------------------------------------------------------------------------->
-    
-    <h1 style="text-align:center;background:black;color:rgb(204, 202, 202);margin-top: 20px;" class='bg-dark'>Companies Registered with us!</h2>
-
-      <div class="card mb-3 " style="max-width: 540px;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRDPRw6YeKWJpC0fJzC8xrb5OBTGR1UoD9zfXwF8hrANGvCWvSY" class="card-img" height= 100% alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">google</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        <button class="" type="submit">Know more... </button>
+            
+            {% endfor %}
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
-</div>
+  <!--================ End Popular TESTS SHOW Area =================-->
 
-
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="https://media-exp1.licdn.com/dms/image/C510BAQGmX81XFwCcFg/company-logo_200_200/0?e=2159024400&v=beta&t=C9RRfuVNYb9xctckHtWTzXdRUWx2ZrHE4pTpFuw3Sow" class="card-img" height= 100% alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">wipro</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        <button class="" type="submit">Know more... </button>
+  <!--================ Start Registration Area =================-->
+  <div class="section_gap registration_area">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <div class="row clock_sec clockdiv" id="clockdiv">
+            <div class="col-lg-12">
+              <h1 class="mb-3">Login Now</h1>
+              <p>
+                There is a moment in the life of any aspiring astronomer that
+                it is time to buy that first telescope. It’s exciting to think
+                about setting up your own viewing station.
+              </p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-lg-4 offset-lg-1">
+          <div class="register_form">
+            <h3>Login now....</h3>
+            <p>Many opportunities are waiting for you....</p>
+            <form action="{% url 'login'%}" method='POST'>
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg-12 form_group">
+                  <input
+                    name="username"
+                    placeholder="Your userame"
+                    required=""
+                    type="text"
+                  />
+                  <input
+                    name="password"
+                    placeholder="Your Password"
+                    required=True
+                    type="password"
+                  />
+                  
+                </div>
+                <div class="col-lg-12 text-center">
+                  <button class="primary-btn">Login</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!--================ End Registration Area =================-->
 
+  <!--================ Start top packages Area =================-->
+  <section class="trainer_area section_gap_top">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="main_title">
+            <h2 class="mb-3">Top packages...</h2>
+            <p>
+              companies that are providing top packages
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row justify-content-center d-flex align-items-center">
+        {% for Quiz in Quizes %}
+      {% if Quiz.ctc > 4 %}
+        <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+          <div class="thumb d-flex justify-content-sm-center">
+            <img class="img-fluid" src={{Quiz.owner.image.url}} alt="" />
+          </div>
+          <div class="meta-text text-sm-center">
+            <h4>{{Quiz.name}}</h4>
+            <p class="designation">{{Quiz.owner.username}}</p>
+            <div class="mb-4">
+              <p>
+                CTC: {{Quiz.ctc}}LPA <br/>
+                {{Quiz.owner.about}}<br />
+                <button class = "btn btn-primary" >know more..</button>
+              </p>
+            </div>
+            
+          </div>
+        </div>
 
+        
 
-
-
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="data:image/jpeg;base64,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" class="card-img" height= 100% alt="...">
+        
+      
+      {% endif %}
+      {% endfor %}
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">capgemini</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        <button class="" type="submit">Know more... </button>
+    </div>
+  </section>
+  <!--================ End top packages Area =================-->
+
+
+  <!--================ Start companies Area =================-->
+  <div class="testimonial_area section_gap">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="main_title">
+            <h2 class="mb-3">Companies registered with us....</h2>
+            <p>
+              Companies that are using our services for recruiting students....
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="testi_slider owl-carousel">
+            {% for company in companies %}
+          <div class="testi_item">
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <img src={{company.image.url}} alt="" />
+              </div>
+              <div class="col-lg-8">
+                <div class="testi_text">
+                  <h4>{{company.username}}</h4>
+                  <p>
+                    {{company.about}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!--================ End companies Area =================-->
 
-
-<!--footer-->
-<!-- Footer -->
-<footer class="page-footer font-small bg-dark">
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3 " style='color:darkgray'>© 2020 Copyright:
-    <a href=""> employable.com</a>
-  </div>
-  <!-- Copyright -->
-<!--#######################333-->
-
-
-</footer>
-<!-- Footer -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock %}

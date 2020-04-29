@@ -1,81 +1,98 @@
+
 {% load crispy_forms_tags %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png" />
+    <title>Edustage Education</title>
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>temp</title>
-</head>
-<body>
-    <!-- navigation bar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href={% url 'home' %}>Employable?</a>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <!-- main css -->
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    
+    <!--================ Start Header Menu Area =================-->
+    
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="{% url 'home'  %}"
+              ><h2 style = 'color:beige'>Employable?</h2></a>
             
-          </ul>
-          {% if user.is_authenticated %}
-          <span class="navbar-text active">
-            {{user}}
-          
-          </span>
-          
-          <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'logout' %}' type="submit">Log Out!</button>
-
-          {% else %}
-            <button class="btn btn-outline-primary my-2 my-sm-0" style = 'margin-right: 4px;' onclick=location.href='{% url 'login' %}'  type="submit">login</button>
-            <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'signup' %}' type="submit">Signup with us!</button>
-          {% endif %}
-        </div>
-      </nav>
-
-
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+    
 <div class='container' style= 'margin-top:60px'>
-    {% if user.is_authenticated %}
+  {% if user.is_authenticated %}
 {% if request.user.is_student %}
 {% if request.user.has_details%}
 <div class="progress mb-3">
-    <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%"></div>
-  </div>
-  <h2 class="mb-3">{{ quiz.name }}</h2>
-  <p class="lead">{{ question.text }}</p>
-  <form method="post" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Next →</button>
-  </form>
+  <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="{{ progress }}"  aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%">{{ progress }}%</div>
+</div>
+<h2 class="mb-3">QUIZ NAME: {{ quiz.name }}</h2>
+<p class="lead">{{ question.text }}</p>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit" class="btn btn-sucsess">Next →</button>
+</form>
 
 
-  {% endif %}
-  {%else%}
-  <p>you need to login as a student first</p>
-  {% endif %}
-  {% else %}
-  <p>you need to login first</p>
-  {% endif %}
-  </div>
+{% endif %}
+{%else%}
+<p>you need to login as a student first</p>
+{% endif %}
+{% else %}
+<p>you need to login first</p>
+{% endif %}
+</div>
+
   
-  
-  
-  
-   
-  <nav class=" bg-dark fixed-bottom">
-  
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3 container" style='color:darkgray'>© 2020 Copyright:
-        <a href="{% url 'home' %}"> employable.com</a>
-      </div>
-      <!-- Copyright -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/owl-carousel-thumb.min.js' %}"></script>
     
-    
-    
-    </nav>
-  </body>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="{% static 'js/gmaps.min.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+      
+    </script>
+    </body>
+</html>
+
+
+
   
-  </html>
+  
+  

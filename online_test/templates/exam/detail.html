@@ -1,0 +1,104 @@
+
+{% extends 'base.html' %}
+{% block contactactive %} active {% endblock %}
+{% block body %}
+<section class="home_banner_area">
+    <div class="banner_inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner_content text-center">
+              
+              <h2 class="text-uppercase mt-4 mb-5">
+                {{quiz.name}}
+              </h2>
+              <p>your suggestions are always welcomed.....</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================Contact Area =================-->
+  <section class="course_details_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 course_details_left">
+                <div class="main_image">
+                    <img class="img-fluid" src={{quiz.owner.image.url}} alt="">
+                </div>
+                <div class="content_wrapper">
+                    <h4 class="title">Description..</h4>
+                    <div class="content">
+                        {{quiz.owner.about}}
+                    </div>
+
+                    <h4 class="title">Eligibility</h4>
+                    <div class="content">
+                        {{quiz.education}}
+                    </div>
+
+                    <h4 class="title">Location</h4>
+                    <div class="content">
+                        {{quiz.location}}
+                    </div>
+
+                    <h4 class="title">Skills required</h4>
+                    <div class="content">
+                        {{quiz.skills_Required}}
+                    </div>
+
+                    <h4 class="title">Work Experience</h4>
+                    <div class="content">
+                        {{quiz.work_exporience}}
+                    </div>
+
+                    <h4 class="title">Work Experience</h4>
+                    <div class="content">
+                        {{quiz.work_exporience}}
+                    </div>
+                    
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 right-contents">
+                <ul>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Recruiter’s Name</p>
+                            <span class="or">{{quiz.owner}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>CTC</p>
+                            <span>{{quiz.ctc}}LPA</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Vacancy</p>
+                            <span>{{quiz.posts}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Job Location... </p>
+                            <span>{{quiz.location}}</span>
+                        </a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated and user.is_student %}
+                <a href="{% url 'take_quiz' quiz.id%}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Login to crack this!</a>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ End Course Details Area =================-->
+
+ {% endblock %}

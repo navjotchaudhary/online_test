@@ -18,10 +18,10 @@ class homeView(View):
                 if(request.user.has_details == False):
                     return redirect('fillStudentDetail')
                 else:
-                    return render(request,'home/home1.html',{})
+                    return render(request,'home/home.html',context)
             else:
                 return redirect('quizList')
-        return render(request,'home/home1.html',context)
+        return render(request,'home/home.html',context)
         
 
 class aboutView(View):
@@ -29,4 +29,14 @@ class aboutView(View):
     def get(self,request):
         
         return render(request,'home/about.html')
+
+
+
+
+
+class contactView(View):
+
+    def get(self,request):
         
+        return render(request,'home/contact.html')
+          
