@@ -28,11 +28,11 @@ class loginView(View):
             context = {
                 'message':'not able to login'
             }
-            return render(request,'accounts/login1.html',{'message':'not able to login'})
+            return render(request,'accounts/login.html',{'message':'not able to login'})
     
     
     def get(self,request):
-        return render(request,'accounts/login1.html',{'message':'try to login here'})
+        return render(request,'accounts/login.html',{'message':'try to login here'})
 
 
 

@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: fbfdsb@gfdsh.fdghdf
+Date: Thu, 30 Apr 2020 18:43:32 -0000
+Message-ID: <158827221269.8290.4412165656096742111@navjot-Aspire-E5-553G>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/accounts/password-reset/MTc/5g3-750885a9e804179e6e41
+
+Your username, in case you’ve forgotten: banty
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------

@@ -25,7 +25,7 @@ SECRET_KEY = '_chg9=^b28zft@l=$5lt$xnt@&@7a3$m0+ms72+g+sb+0+!+33'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'student',
     'company',
     'crispy_forms',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+   
 ]
 
 MIDDLEWARE = [
