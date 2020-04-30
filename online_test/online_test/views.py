@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from exam.models import Quiz
-from accounts.models import User
+from accounts.models import User, contactUs
 
 class homeView(View):
 
@@ -39,4 +39,18 @@ class contactView(View):
     def get(self,request):
         
         return render(request,'home/contact.html')
+
+    def post(self,request):
+        name = request.POST.get('name')
+        if request.user.is_authenticated:
+            name = request.user.username
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        a = contactUs.objects.create(name = name,email=email, message = message)
+        a.save()
+        context = {
+            'message':name +", your message is saved successfully...."
+        }
+        return render(request,'home/contact.html',context)
+
           
