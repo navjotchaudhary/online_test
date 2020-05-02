@@ -3,7 +3,7 @@ from django.views import View
 from django.http import HttpResponse
 from .forms import StudentDetailsForm, TakeQuizForm, StudentInterestsForm
 from accounts.models import User
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, DetailView
 from exam.models import Quiz
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
@@ -46,8 +46,8 @@ class QuizListView(ListView):
     template_name = 'student/quiz_list.html'
 
     def get_queryset(self):
-        student = self.request.user.student
-
+        student = self.request.user
+        student = Student.objects.get(user=student)
         print(f'student {student}')
         student_interests = student.interests.values_list('pk', flat=True)
         taken_quizzes = student.quizzes.values_list('pk', flat=True)
@@ -123,4 +123,17 @@ class StudentInterestsView(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, 'Interests updated with success!')
         return super().form_valid(form)
+
+
+
+
+class student_detail_view(DetailView):
+    model = User
+    template_name = "student/profile.html"
+    def get_context_data(self,**kwargs):
+            print(self.get_object())
+            context = super(student_detail_view,self).get_context_data(**kwargs)
+            context['student']= Student.objects.get(user = self.get_object())
+            context['taken_Quiz'] = TakenQuiz.objects.filter(student = context['student'])
+            return context
 

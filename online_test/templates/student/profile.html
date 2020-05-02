@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if request.user == object or request.user.is_company%}
+<section class="course_details_area section_gap">
+    <div class="container">
+      <aside class="single_sidebar_widget author_widget text-center" style = "justify-content:center">
+        <img class="author_img rounded-circle" style = "width:20%; justify-content:center" src={{object.image.url}} alt={{object.image.url}}>
+        <h2 class="text-uppercase mt-4 mb-5">
+          {{object.first_name}} {{object.last_name}}
+        </h2>
+        </aside>
+      <div class="row">
+          <div class="col-lg-8 course_details_left">
+    <div class="content_wrapper">
+
+        <h4 class="title">Username</h4>
+      <div class="content">
+          {{object.username}}
+          
+      </div>
+      <h4 class="title">Objectives</h4>
+      <div class="content">
+          {{user.about}}
+          
+      </div>
+
+      <h4 class="title">Email</h4>
+      <div class="content">
+          {{object.email}}
+          
+      </div>
+
+      <h4 class="title">Taken Quizzes</h4>
+      <div class="content">
+          
+          
+          <table class="table table-primary">
+            <thead>
+              <tr>
+                
+                <th scope="col">Given Quizzes</th>
+                <th scope="col">Score</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                {% for quizz in taken_Quiz %}
+              <tr>
+                
+                <td>{{quizz.quiz.name}}</td>
+                <td>{{quizz.score}}</td>
+                
+              </tr>
+              {% empty %}
+              <tr>
+                
+                <td>student has not given any test yet...</td>
+                
+                
+              </tr>
+              {% endfor %}
+              
+             
+            </tbody>
+          </table>
+          
+      </div>
+
+      <h4 class="title">Adhar number</h4>
+      <div class="content">
+          {{student.AdharNumber}}
+          
+      </div>
+      <br />
+      <div class = "content text-center"><a href="mailto:{{object.email}}" class="genric-btn info primary circle arrow">Send him a mail <span class="ti-arrow-right"></span></a>
+      </div>
+</div>
+      
+</div>
+
+      
+      
+      </div>
+      </div>
+    </section>
+{% else %}
+
+    <section class="home_banner_area">
+        <div class="banner_inner">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="banner_content text-center">
+                  
+                  <h2 class="text-uppercase mt-4 mb-5">
+                   this ppage is not ment for you...
+                  </h2>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+{% endif %}
+
+
+
+{% endblock %}
