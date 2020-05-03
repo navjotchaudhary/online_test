@@ -46,9 +46,12 @@ class QuizListView(ListView):
     template_name = 'student/quiz_list.html'
 
     def get_queryset(self):
+        
+        if self.request.user.is_company:
+            return 0
         student = self.request.user
         student = Student.objects.get(user=student)
-        print(f'student {student}')
+        print(f'student {self.request.user.student}')
         student_interests = student.interests.values_list('pk', flat=True)
         taken_quizzes = student.quizzes.values_list('pk', flat=True)
         queryset = Quiz.objects.filter(subject__in=student_interests) \
@@ -62,6 +65,7 @@ def take_quiz(request, pk):
     quiz = get_object_or_404(Quiz, pk=pk)
     student = request.user.student
 
+    print(f"student = {student}")
     if student.quizzes.filter(pk=pk).exists():
         return render(request, 'students/taken_quiz.html')
 
