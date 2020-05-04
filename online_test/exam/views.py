@@ -12,8 +12,9 @@ class quizDetail(DetailView):
     def get_context_data(self,**kwargs):
             print(self.get_object())
             context = super(quizDetail,self).get_context_data(**kwargs)
-            context['student']= self.request.user.student
-            context['taken_Quiz'] = self.quizinlist(TakenQuiz.objects.filter(student = context['student']))
+            if self.request.user.is_authenticated and self.request.user.is_student:
+                context['student']= self.request.user.student
+                context['taken_Quiz'] = self.quizinlist(TakenQuiz.objects.filter(student = context['student']))
             return context
     def quizinlist(self,qlist):
         for quiz1 in qlist:

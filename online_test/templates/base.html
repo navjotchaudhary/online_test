@@ -12,6 +12,7 @@
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png" />
     <title>Edustage Education</title>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
     <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" />
@@ -77,9 +78,18 @@
                 </a>
                 </li>
                 {% else %}
+                {% if request.user.is_company %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'quiz_list'  %}">hi.. {{request.user}}!</a>
+                  <a class="nav-link" href="{% url 'home'  %}">hi.. {{request.user}}!</a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'quiz_list'  %}">Quiz list</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'student_profile' request.user.slug %}">hi.. {{request.user}}!</a>
+                </li>
+                {% endif %}
                 <li class="nav-item" >
                   <a class = 'nav-link'>
                   <button class="btn btn-outline-primary my-2 my-sm-0" onclick=location.href='{% url 'logout' %}' type="submit">logout</button>

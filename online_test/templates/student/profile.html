@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block body %}
 {% if request.user == object or request.user.is_company%}
+
 <section class="course_details_area section_gap">
+  
     <div class="container">
       <aside class="single_sidebar_widget author_widget text-center" style = "justify-content:center">
         <img class="author_img rounded-circle" style = "width:20%; justify-content:center" src={{object.image.url}} alt={{object.image.url}}>
@@ -19,7 +21,7 @@
           {{object.username}}
           
       </div>
-      <h4 class="title">Objectives</h4>
+      <h4 class="title">About</h4>
       <div class="content">
           {{user.about}}
           
@@ -73,8 +75,17 @@
           
       </div>
       <br />
-      <div class = "content text-center"><a href="mailto:{{object.email}}" class="genric-btn info primary circle arrow">Send him a mail <span class="ti-arrow-right"></span></a>
+      
+      
+      <div class = "content text-center">
+        {% if request.user.pk == user.pk %}
+        <button type="button" style = "border-radius: 20px;" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">
+        <i class="fa fa-edit " style="font-size:24px"></i> Update Profile...
+      </button>
+      {% else %}
+      <a href="mailto:{{object.email}}" class="genric-btn info primary circle arrow">Send him a mail <i class="fa fa-paper-plane" style="font-size:24px;margin-left:5px"></i></a>
       </div>
+      {% endif %}
 </div>
       
 </div>
@@ -104,9 +115,34 @@
         </div>
       </section>
 
-
 {% endif %}
+{% if request.user.pk == user.pk %}
+<div class = "container">
+ <!-- Button trigger modal -->
 
-
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update details here..</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST"  >
+          {% csrf_token %}
+        {{form|crispy}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <input type="submit" class="btn btn-success">
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  {% endif %}
 {% endblock %}

@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, reverse
 from django.views import View
 from django.http import HttpResponse
 from .forms import StudentDetailsForm, TakeQuizForm, StudentInterestsForm
 from accounts.models import User
-from django.views.generic import ListView, UpdateView, DetailView
+from django.views.generic import ListView, UpdateView, DetailView, UpdateView
 from exam.models import Quiz
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
@@ -131,8 +131,9 @@ class StudentInterestsView(UpdateView):
 
 
 
-class student_detail_view(DetailView):
+class student_detail_view(UpdateView):
     model = User
+    fields = ("first_name", "last_name", "email","about")
     template_name = "student/profile.html"
     def get_context_data(self,**kwargs):
             print(self.get_object())
@@ -140,4 +141,9 @@ class student_detail_view(DetailView):
             context['student']= Student.objects.get(user = self.get_object())
             context['taken_Quiz'] = TakenQuiz.objects.filter(student = context['student'])
             return context
+
+
+    def get_success_url(self):
+        return reverse('student_profile', kwargs={'slug': self.object.slug})
+
 
