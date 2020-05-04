@@ -90,8 +90,12 @@
                     </li>
                 </ul>
                 {% if user.is_authenticated and user.is_student %}
-                <a href="{% url 'take_quiz' quiz.id%}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Give this test now!</a>
-                {% else %}
+                    {% if taken_Quiz %}<a href="{% url 'taken_quiz_list'%}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">You have Already GIven this test!</a>
+                    {% else %}
+                
+                    <a href="{% url 'take_quiz' quiz.id%}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Give this test now!</a>
+                    {% endif %}
+                    {% else %}
                 <a href="{% url 'login' %}" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Login to crack this!</a>
                 {% endif %}
                 
@@ -99,6 +103,7 @@
         </div>
     </div>
 </section>
-<!--================ End Course Details Area =================-->
 
+<!--================ End Course Details Area =================-->
+{{taken_Quiz}}
  {% endblock %}
